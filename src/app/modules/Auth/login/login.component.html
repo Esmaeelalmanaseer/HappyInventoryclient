@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-gradient">
+    <div class="card login-card">
+      <div class="card-body">
+        <div class="login-header text-center mb-4">
+          <h2>Login</h2>
+          <p class="text-muted">Welcome back! Please enter your credentials</p>
+        </div>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+              <input matInput formControlName="email" type="email" id="email" class="form-control" />
+            </div>
+            <div class="invalid-feedback" *ngIf="loginForm.get('email')?.hasError('required')">
+              Email is required
+            </div>
+            <div class="invalid-feedback" *ngIf="loginForm.get('email')?.hasError('email')">
+              Invalid email address
+            </div>
+          </div>
+  
+          <div class="mb-3 position-relative">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock"></i></span>
+              <input matInput formControlName="password" type="password" id="password" class="form-control" />
+              <button type="button" class="btn btn-light position-absolute end-0" (click)="hide = !hide">
+                <i class="bi" [ngClass]="hide ? 'bi-eye-slash' : 'bi-eye'"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback" *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </div>
+          </div>
+  
+  
+          <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+            <span *ngIf="!isLoading">Login</span>
+            <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"></div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
