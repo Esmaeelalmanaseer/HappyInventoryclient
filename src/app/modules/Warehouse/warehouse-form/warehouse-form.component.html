@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2>{{ isEditMode ? 'Edit Warehouse' : 'Add New Warehouse' }}</h2>
+  
+    <form [formGroup]="warehouseForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input id="name" formControlName="name" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea id="address" formControlName="address" class="form-control"></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input id="city" formControlName="city" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <select id="country" formControlName="country" class="form-select">
+          <option value="">Select Country</option>
+          <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary me-2" [disabled]="warehouseForm.invalid">
+        {{ isEditMode ? 'Update' : 'Save' }}
+      </button>
+      <a routerLink="/warehouse" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>  

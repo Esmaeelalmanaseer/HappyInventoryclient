@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cookieservice:CookieService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,7 +38,29 @@ export class LoginComponent {
       this.authService.login({ email, password }).subscribe({
         next: (res) => {
           this.isLoading = false;
-          this.router.navigate(['/dashboard']);
+          this.cookieservice.set(
+            'Authorization',
+            'Bearer ' + res.toekn,
+            undefined,
+            '/',
+            undefined,
+            true,
+            'Strict'
+          );
+          console.log(res)
+           //set User
+    this.authService.setUser({
+      email:res.email,
+      roles:res.roles
+    });
+    const roles = res.roles;
+    if (roles.includes('Admin')) {
+      this.router.navigate(['/dashboard']);
+    } else if (roles.includes('Management')) {
+      this.router.navigate(['/warehouse']);
+    } else {
+      this.router.navigate(['/']);
+    }
         },
         error: (err) => {
           this.isLoading = false;

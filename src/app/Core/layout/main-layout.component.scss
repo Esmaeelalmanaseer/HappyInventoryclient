@@ -1,0 +1,51 @@
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+    .navbar {
+      background-color: #212529; // Dark navbar
+      color: #fff;
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .brand {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+    }
+  
+    .layout-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+  
+      .sidebar {
+        background-color: #1c1f23;
+        width: 220px;
+        padding: 1rem;
+        color: #adb5bd;
+  
+        .nav-link {
+          color: #adb5bd;
+          margin-bottom: 1rem;
+  
+          &.active,
+          &:hover {
+            color: #fff;
+            font-weight: bold;
+          }
+        }
+      }
+  
+      .content {
+        flex: 1;
+        padding: 2rem;
+        background-color: #f8f9fa;
+        overflow-y: auto;
+      }
+    }
+  }
+  

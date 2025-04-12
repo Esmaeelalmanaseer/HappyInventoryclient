@@ -39,3 +39,7 @@ export interface ItemCreate {
     pageNumber: number = 1;
   }
   
+  export interface ItemStatDto {
+    name: string;
+    quantity: number;
+  }

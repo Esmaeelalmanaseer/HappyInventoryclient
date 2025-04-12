@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Dashboard</h2>
+  
+    <!-- Warehouse Status -->
+    <h4>Warehouse Inventory</h4>
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Warehouse</th>
+          <th>Item Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let warehouse of warehouseStatus">
+          <td>{{ warehouse.warehouseName }}</td>
+          <td>{{ warehouse.itemCount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Top High Quantity -->
+    <h4 class="mt-5">Top 10 Items (Highest Quantity)</h4>
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of topHighItems">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Top Low Quantity -->
+    <h4 class="mt-5">Top 10 Items (Lowest Quantity)</h4>
+    <table class="table table-bordered">
+      <thead class="table-danger">
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of topLowItems">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

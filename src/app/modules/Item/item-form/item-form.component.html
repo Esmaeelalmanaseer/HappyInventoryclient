@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <h2>{{ isEditMode ? 'Edit Item' : 'Add New Item' }}</h2>
+  
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Item Name</label>
+        <input id="name" formControlName="name" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="sku" class="form-label">SKU Code</label>
+        <input id="sku" formControlName="sku" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="qty" class="form-label">Quantity</label>
+        <input type="number" id="qty" formControlName="qty" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="costPrice" class="form-label">Cost Price</label>
+        <input type="number" id="costPrice" formControlName="costPrice" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="msrpPrice" class="form-label">MSRP Price</label>
+        <input type="number" id="msrpPrice" formControlName="msrpPrice" class="form-control" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary me-2" [disabled]="itemForm.invalid">
+        {{ isEditMode ? 'Update' : 'Save' }}
+      </button>
+      <a [routerLink]="['/warehouse/items', warehouseId]" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  

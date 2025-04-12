@@ -4,14 +4,14 @@ import { user } from '../../shared/Models/user';
 import { loginRequist } from '../../shared/Models/loginRequist';
 import { loginresponse } from '../../shared/Models/loginresponse';
 import { HttpClient } from '@angular/common/http';
-
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   $user=new BehaviorSubject<user | undefined>(undefined)
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private cookieService:CookieService) { }
   baseurl:string='https://localhost:7296'
 
   login(requist:loginRequist):Observable<loginresponse>
@@ -45,6 +45,7 @@ localStorage.setItem('roles',user.roles.join(','));
   logout():void
   {
     localStorage.clear();
+    this.cookieService.delete('Authorization','/');
     this.$user.next(undefined);
   }
 }

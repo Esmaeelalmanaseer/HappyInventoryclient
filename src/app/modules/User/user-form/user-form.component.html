@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <h2>{{ isEditMode ? 'Edit User' : 'Add New User' }}</h2>
+  
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email" [readonly]="isEditMode" />
+      </div>
+  
+      <div class="mb-3">
+        <label>Full Name</label>
+        <input type="text" class="form-control" formControlName="fullName" />
+      </div>
+  
+      <div class="mb-3" *ngIf="!isEditMode">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password" />
+      </div>
+  
+      <div class="mb-3">
+        <label>Role</label>
+        <select class="form-select" formControlName="role">
+          <option value="" disabled>Select a role</option>
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+      </div>
+  
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" formControlName="active" id="active" />
+        <label class="form-check-label" for="active">Active</label>
+      </div>
+  
+      <button type="submit" class="btn btn-primary me-2" [disabled]="userForm.invalid">
+        {{ isEditMode ? 'Update' : 'Save' }}
+      </button>
+      <a routerLink="/users" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  

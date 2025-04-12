@@ -29,3 +29,7 @@ export interface WarehouseCreate {
     pageNumber: number = 1;
   }
   
+  export interface WarehouseStatusDto {
+    warehouseName: string;
+    itemCount: number;
+  }
